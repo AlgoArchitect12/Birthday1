@@ -529,7 +529,7 @@
 
   <!-- 1 -->
   <section class="screen active" id="s1">
-    <div class="panel heart-intro-wrap" onclick="nextScreen(2)">
+    <div class="panel heart-intro-wrap" onclick="nextScreen(2);">
       <div class="spin-heart"></div>
       <div class="intro-glow-text">For Someone Special</div>
       <div class="intro-sub">
@@ -571,10 +571,11 @@
       <div class="sub">Replace these with your real photos</div>
 
       <div class="memory-grid">
-        <div class="memory"><img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?q=80&w=1200&auto=format&fit=crop" alt=""></div>
-        <div class="memory"><img src="https://images.unsplash.com/photo-1488426862026-3ee34a7d66df?q=80&w=1200&auto=format&fit=crop" alt=""></div>
+        <div class="memory"><img src="C:\Users\dharm\OneDrive\Desktop\Birthday/img1.jpeg" alt=""></div>
+        <div class="memory"><img src="C:\Users\dharm\OneDrive\Desktop\Birthday/img2.jpeg" alt=""></div>
+        <div class="memory"><img src="C:\Users\dharm\OneDrive\Desktop\Birthday/img3.jpeg" alt=""></div>
+        <div class="memory"><img src="C:\Users\dharm\OneDrive\Desktop\Birthday/img4.jpeg" alt=""></div>
         <div class="memory quote">Every moment with you feels like magic ✨</div>
-        <div class="memory"><img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=1200&auto=format&fit=crop" alt=""></div>
       </div>
 
       <button class="btn" onclick="nextScreen(5)">One last thing 🎁</button>
@@ -622,11 +623,20 @@
     </div>
   </section>
 
-  <audio id="bgm" loop>
-    <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
-  </audio>
-
   <script>
+    async function startMusic() {
+  const music = document.getElementById('music');
+  if (!music) return; 
+  try {
+        music.load();
+    music.volume = 1.0;
+    await music.play();
+    console.log("Music started");
+  } catch (err) {
+    console.log("Audio error:", err);
+    alert("Tap once more to start the music 🎵");
+}
+}
     const messageText = `Happy Birthday to the most beautiful girl in my world ❤️
 I don’t think you even realize how special you are… not just today, but every single day. You make everything feel lighter, happier, and honestly… a lot more meaningful for me.
 I’m really lucky to have you. Like really lucky. And today, I just want you to feel all the love you deserve (starting with mine, obviously 😌).
@@ -695,7 +705,6 @@ Now hurry… it’s your birthday… where’s my first hug? 😏❤️`;
       screens.forEach(s => s.classList.remove('active'));
       document.getElementById('s' + n).classList.add('active');
 
-      if(n >= 2) startMusic();
       if(n === 3) startTyping();
     }
 
@@ -768,12 +777,7 @@ won’t dare to stay. 💖♾️`;
       document.getElementById("choiceRow").innerHTML =
         '<button class="choice-btn yes-btn" disabled style="opacity:.95;cursor:default;">She said Yes 💘</button>';
     }
-
-    function startMusic(){
-      const bgm = document.getElementById('bgm');
-      bgm.play().catch(() => {});
-    }
-
+    
     function createStars(){
       const box = document.getElementById('stars');
       for(let i = 0; i < 65; i++){
